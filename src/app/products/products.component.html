@@ -1,0 +1,45 @@
+<div class="row prod_page">
+  <app-side-menu class="col-2 bg-primary text-light"> SideBar Component</app-side-menu>
+  <div class="col-10 mt-2">
+    <div class=" bg-dark text-light ">
+      @if(buyMode){
+        <img [src]="prod.logo" class="rounded m-2" style="width: 100px;" alt="">logo
+      }@else{
+        <h4>Thanks for purchasing from our Store {{prod.name}}</h4>
+      }
+      <a href="#" class="btn btn-primary" (click)="fireBuyProd()">
+        @if(buyMode){
+          buy  
+        }@else{
+          return  
+        }
+      </a>
+    </div>
+    
+    <label for="cars">Choose a film category:</label>
+
+    <select class="w-25 m-2" [(ngModel)]="productsFilter">
+      <option value=1>comedy</option>
+      <option value=2>sport</option>
+      <option value=3>romantic</option>
+      <option value=4>horor</option>
+    </select>
+    <div class="row">
+
+    @for(film of productsToShow;track film.id){
+      <div class="col-sm-12 col-lg-4">
+        <div class="card" style="width: 18rem;">
+          <img [src]="film.image" class="card-img-top" alt="...">
+          <div class="card-body" [ngClass]="{'bg-warning':film.quantity==1 , 'bg-dark text-light':film.quantity < 1}">
+            <h5 [appHighlight]="color" class="card-title">Card title</h5>
+            <p class="card-text m-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p appHighlight class="text-primary m-0" >available : {{film.quantity}}</p>
+            <button href="#" class="btn btn-primary" (click)="quantity_after_buy(film.id)" [disabled]="film.quantity==0">buy</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>  
+          </div>
+    
+  </div>

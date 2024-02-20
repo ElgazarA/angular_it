@@ -1,0 +1,22 @@
+<div class="row prod_list">
+  <button class="btn btn-success" (click)="show_hide_cards()">Show/Hide Cards</button>
+  <input type="text" class="form-control" placeholder="Search" id="search" [(ngModel)]="productsFilter">
+  @if(showCards){
+    @for(prod of products_to_show; track prod.id){
+      <div class="col col-lg-3 col-md-4 col-sm-12 g-3 ">
+          <div class="card " style="width: 18rem;">
+              <img class="card-img-top h-25" src={{prod.image}} alt="Card image cap">  
+              <div class="card-body">
+                <h4 class="card-title">{{prod.name}}</h4>
+                <p   [ngClass]="{'text-warning' : prod.price > 2000 , 'text-danger': prod.price<=2000}">R$ {{prod.price}}</p>
+		            <h3 [ngStyle]="{'color': (prod.quantity>0) ? 'blue' : 'red'}">xsxsxsx</h3>
+                <button href="#" [class.text-secondary]="prod.quantity==0" class="btn btn-primary"  [disabled]="prod.quantity==0">add to card</button>
+              </div>
+            </div>
+      </div>
+  }@empty{
+    <h2>there is no data to show</h2>
+  }
+  }
+  
+</div>
